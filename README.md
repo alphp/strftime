@@ -48,7 +48,7 @@ You can install this plugin into your application using [composer](https://getco
 
 # Usage
 ```php
-  use func \PHP81_BC\strftime;
+  use function PHP81_BC\strftime;
   echo strftime('%A %e %B %Y %X', new \DateTime('2021-09-28 00:00:00'), 'fr_FR');
 ```
 
