@@ -25,9 +25,9 @@ Original autor: [BohwaZ](https://bohwaz.net/)
 ## Composer install
 You can install this plugin into your application using [composer](https://getcomposer.org):
 
-- Add alphp/strftime package to your project:
+- Add php81_bc/strftime package to your project:
   ```bash
-    composer require alphp/strftime
+    composer require php81_bc/strftime
   ```
 
 - Load the function PHP81_BC\strftime in your project
