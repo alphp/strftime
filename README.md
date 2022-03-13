@@ -8,10 +8,13 @@
 
 # strftime
 Locale-formatted strftime using IntlDateFormatter (PHP 8.1 compatible)
+
 This provides a cross-platform alternative to strftime() for when it will be removed from PHP.
+
 Note that output can be slightly different between libc sprintf and this function as it is using ICU.
 
 Original code: https://gist.github.com/bohwaz/42fc223031e2b2dd2585aab159a20f30
+
 Original autor: [BohwaZ](https://bohwaz.net/)
 
 # Requirements
