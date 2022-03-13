@@ -1,5 +1,5 @@
 {
-  "name": "PHP81_BC/strftime",
+  "name": "php81_bc/strftime",
   "version": "0.0.1",
   "description": "Locale-formatted strftime using IntlDateFormatter (PHP 8.1 compatible)",
   "license": "MIT",
