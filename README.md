@@ -19,6 +19,7 @@ Original autor: [BohwaZ](https://bohwaz.net/)
 
 # Requirements
 - PHP >= 5.6
+- ext-intl ([Internationalization extension ICU](https://www.php.net/manual/en/book.intl.php))
 
 # Installation
 
