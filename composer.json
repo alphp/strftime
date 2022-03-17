@@ -17,6 +17,9 @@
     "php": ">=5.6.0",
     "ext-intl" : "*"
   },
+  "require-dev": {
+		"phpunit/phpunit": "@stable"
+  },
   "autoload": {
     "files": ["src/php-8.1-strftime.php"]
   }
