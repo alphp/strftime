@@ -153,26 +153,41 @@
       '%x' => $intl_formatter,
     ];
 
-    $out = preg_replace_callback('/(?<!%)(%[a-zA-Z])/', function ($match) use ($translation_table, $timestamp) {
-      if ($match[1] == '%n') {
+    $out = preg_replace_callback('/(?<!%)%([_#-]?)([a-zA-Z])/', function ($match) use ($translation_table, $timestamp) {
+      $prefix = $match[1];
+      $char = $match[2];
+      $pattern = '%'.$char;
+      if ($pattern == '%n') {
         return "\n";
       }
-      elseif ($match[1] == '%t') {
+      elseif ($pattern == '%t') {
         return "\t";
       }
 
-      if (!isset($translation_table[$match[1]])) {
-        throw new InvalidArgumentException(sprintf('Format "%s" is unknown in time format', $match[1]));
+      if (!isset($translation_table[$pattern])) {
+        throw new InvalidArgumentException(sprintf('Format "%s" is unknown in time format', $pattern));
       }
 
-      $replace = $translation_table[$match[1]];
+      $replace = $translation_table[$pattern];
 
       if (is_string($replace)) {
-        return $timestamp->format($replace);
+        $result = $timestamp->format($replace);
       }
       else {
-        return $replace($timestamp, $match[1]);
+        $result = $replace($timestamp, $pattern);
       }
+
+      switch ($prefix) {
+        case '_':
+          // replace leading zeros with spaces but keep last char if also zero
+          return preg_replace('/\G0(?=.)/', ' ', $result);
+        case '#':
+        case '-':
+          // remove leading zeros but keep last char if also zero
+          return preg_replace('/^0+(?=.)/', '', $result);
+      }
+
+      return $result;
     }, $format);
 
     $out = str_replace('%%', '%', $out);
