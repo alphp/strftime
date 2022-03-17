@@ -17,7 +17,7 @@
    * echo strftime('%A %e %B %Y %X', new \DateTime('2021-09-28 00:00:00'), 'fr_FR');
    *
    * Original use:
-   * \setlocale('fr_FR.UTF-8', LC_TIME);
+   * \setlocale(LC_TIME, 'fr_FR.UTF-8');
    * echo \strftime('%A %e %B %Y %X', strtotime('2021-09-28 00:00:00'));
    *
    * @param  string $format Date format
@@ -36,7 +36,12 @@
 
     $timestamp->setTimezone(new DateTimeZone(date_default_timezone_get()));
 
-    $locale = substr((string) $locale, 0, 5);
+    if (empty($locale)) {
+      // get current locale
+      $locale = setlocale(LC_TIME, '0');
+    }
+    // remove trailing part not supported by ext-intl locale
+    $locale = preg_replace('/[^\w-].*$/', '', $locale);
 
     $intl_formats = [
       '%a' => 'EEE',	// An abbreviated textual representation of the day	Sun through Sat
