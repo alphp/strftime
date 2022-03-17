@@ -55,6 +55,6 @@ You can install this plugin into your application using [composer](https://getco
 
 ## Original use
 ```php
-  \setlocale('fr_FR.UTF-8', LC_TIME);
+  \setlocale(LC_TIME, 'fr_FR.UTF-8');
   echo \strftime('%A %e %B %Y %X', strtotime('2021-09-28 00:00:00'));
 ```
