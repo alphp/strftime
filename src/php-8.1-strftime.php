@@ -30,10 +30,6 @@
 
     $timestamp = new DateTime($timestamp);
 
-    if (!($timestamp instanceof DateTimeInterface)) {
-      throw new InvalidArgumentException('$timestamp argument is neither a valid UNIX timestamp, a valid date-time string or a DateTime object.');
-    }
-
     $timestamp->setTimezone(new DateTimeZone(date_default_timezone_get()));
 
     if (empty($locale)) {
