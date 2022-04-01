@@ -1,6 +1,6 @@
 {
   "name": "php81_bc/strftime",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Locale-formatted strftime using IntlDateFormatter (PHP 8.1 compatible)",
   "license": "MIT",
   "authors": [

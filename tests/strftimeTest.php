@@ -1,4 +1,6 @@
 <?php
+  declare(strict_types=1);
+
   use PHPUnit\Framework\TestCase;
   use function PHP81_BC\strftime;
 
@@ -23,5 +25,10 @@
     public function test_datetime_timestamp () {
       $result = strftime('%Y-%m-%d %H:%M:%S', new DateTime($this->str_date));
       $this->assertEquals('2022-03-12 01:02:03', $result);
+    }
+
+    public function test_exception () {
+      $this->expectException(InvalidArgumentException::class);
+      $result = strftime('%Y-%m-%d %H:%M:%S', 'InvalidArgumentException');
     }
   }

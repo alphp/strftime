@@ -4,6 +4,7 @@
   use DateTime;
   use DateTimeZone;
   use DateTimeInterface;
+  use Exception;
   use IntlDateFormatter;
   use InvalidArgumentException;
 
@@ -29,7 +30,11 @@
     if (!($timestamp instanceof DateTimeInterface)) {
       $timestamp = is_int($timestamp) ? '@' . $timestamp : (string) $timestamp;
 
-      $timestamp = new DateTime($timestamp);
+      try {
+        $timestamp = new DateTime($timestamp);
+      } catch (Exception $e) {
+        throw new InvalidArgumentException('$timestamp argument is neither a valid UNIX timestamp, a valid date-time string or a DateTime object.', 0, $e);
+      }
     }
 
     $timestamp->setTimezone(new DateTimeZone(date_default_timezone_get()));
