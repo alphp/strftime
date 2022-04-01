@@ -26,12 +26,10 @@
    * @author BohwaZ <https://bohwaz.net/>
    */
   function strftime (string $format, $timestamp = null, ?string $locale = null) : string {
-    $timestamp = is_int($timestamp) ? '@' . $timestamp : (string) $timestamp;
-
-    $timestamp = new DateTime($timestamp);
-
     if (!($timestamp instanceof DateTimeInterface)) {
-      throw new InvalidArgumentException('$timestamp argument is neither a valid UNIX timestamp, a valid date-time string or a DateTime object.');
+      $timestamp = is_int($timestamp) ? '@' . $timestamp : (string) $timestamp;
+
+      $timestamp = new DateTime($timestamp);
     }
 
     $timestamp->setTimezone(new DateTimeZone(date_default_timezone_get()));
