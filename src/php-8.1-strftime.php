@@ -26,9 +26,11 @@
    * @author BohwaZ <https://bohwaz.net/>
    */
   function strftime (string $format, $timestamp = null, ?string $locale = null) : string {
-    $timestamp = is_int($timestamp) ? '@' . $timestamp : (string) $timestamp;
+    if (!($timestamp instanceof DateTimeInterface)) {
+      $timestamp = is_int($timestamp) ? '@' . $timestamp : (string) $timestamp;
 
-    $timestamp = new DateTime($timestamp);
+      $timestamp = new DateTime($timestamp);
+    }
 
     $timestamp->setTimezone(new DateTimeZone(date_default_timezone_get()));
 
