@@ -52,8 +52,6 @@
       '%b' => 'MMM',	// Abbreviated month name, based on the locale	Jan through Dec
       '%B' => 'MMMM',	// Full month name, based on the locale	January through December
       '%h' => 'MMM',	// Abbreviated month name, based on the locale (an alias of %b)	Jan through Dec
-      '%p' => 'aa',	  // UPPER-CASE 'AM' or 'PM' based on the given time	Example: AM for 00:31, PM for 22:23
-      '%P' => 'aa',	  // lower-case 'am' or 'pm' based on the given time	Example: am for 00:31, pm for 22:23
     ];
 
     $intl_formatter = function (DateTimeInterface $timestamp, string $format) use ($intl_formats, $locale) {
@@ -96,7 +94,9 @@
       '%a' => $intl_formatter,
       '%A' => $intl_formatter,
       '%d' => 'd',
-      '%e' => 'j',
+      '%e' => function ($timestamp) {
+        return sprintf('% 2u', $timestamp->format('j'));
+      },
       '%j' => function ($timestamp) {
         // Day number in year, 001 to 366
         return sprintf('%03d', $timestamp->format('z')+1);
@@ -126,7 +126,7 @@
       // Year
       '%C' => function ($timestamp) {
         // Century (-1): 19 for 20th century
-        return (int) $timestamp->format('Y') / 100;
+        return floor($timestamp->format('Y') / 100);
       },
       '%g' => function ($timestamp) {
         return substr($timestamp->format('o'), -2);
@@ -139,15 +139,17 @@
       '%H' => 'H',
       '%k' => 'G',
       '%I' => 'h',
-      '%l' => 'g',
+      '%l' => function ($timestamp) {
+        return sprintf('% 2u', $timestamp->format('g'));
+      },
       '%M' => 'i',
-      '%p' => $intl_formatter, // AM PM (this is reversed on purpose!)
-      '%P' => $intl_formatter, // am pm
-      '%r' => 'G:i:s A', // %I:%M:%S %p
+      '%p' => 'A', // AM PM (this is reversed on purpose!)
+      '%P' => 'a', // am pm
+      '%r' => 'h:i:s A', // %I:%M:%S %p
       '%R' => 'H:i', // %H:%M
       '%S' => 's',
       '%T' => 'H:i:s', // %H:%M:%S
-      '%X' => $intl_formatter,// Preferred time representation based on locale, without the date
+      '%X' => $intl_formatter, // Preferred time representation based on locale, without the date
 
       // Timezone
       '%z' => 'O',
