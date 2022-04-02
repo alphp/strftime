@@ -88,15 +88,15 @@ You can install this plugin into your application using [composer](https://getco
 ## Formats
 
 ### Day
-| Format | Description                                             | Example returned values                         |
-|:------:|---------------------------------------------------------|-------------------------------------------------|
-|  `%a`  | An abbreviated textual representation of the day        | `Sun` through `Sat`                             |
-|  `%A`  | A full textual representation of the day                | `Sunday` through `Saturday`                     |
-|  `%d`  | Two-digit day of the month (with leading zeros)         | `01` to `31`                                    |
-|  `%e`  | Day of the month, with a space preceding single digits. | ` 1` to `31`                                    |
-|  `%j`  | Day of the year, 3 digits with leading zeros            | `001` to `366`                                  |
-|  `%u`  | ISO-8601 numeric representation of the day of the week  | `1` (for `Monday`) through `7` (for `Sunday`)   |
-|  `%w`  | Numeric representation of the day of the week           | `0` (for `Sunday`) through `6` (for `Saturday`) |
+| Format | Description                                            | Example returned values                         |
+|:------:|--------------------------------------------------------|-------------------------------------------------|
+|  `%a`  | An abbreviated textual representation of the day       | `Sun` through `Sat`                             |
+|  `%A`  | A full textual representation of the day               | `Sunday` through `Saturday`                     |
+|  `%d`  | Two-digit day of the month (with leading zeros)        | `01` to `31`                                    |
+|  `%e`  | Day of the month, with a space preceding single digits | ` 1` to `31`                                    |
+|  `%j`  | Day of the year, 3 digits with leading zeros           | `001` to `366`                                  |
+|  `%u`  | ISO-8601 numeric representation of the day of the week | `1` (for `Monday`) through `7` (for `Sunday`)   |
+|  `%w`  | Numeric representation of the day of the week          | `0` (for `Sunday`) through `6` (for `Saturday`) |
 
 [TOC](#table-of-contents)
 ### Week
@@ -122,8 +122,8 @@ You can install this plugin into your application using [composer](https://getco
 | Format | Description                                                                            | Example returned values                         |
 |:------:|----------------------------------------------------------------------------------------|-------------------------------------------------|
 |  `%C`  | Two digit representation of the century (year divided by 100, truncated to an integer) | `19` for the `20th Century`                     |
-|  `%g`  | Two digit representation of the year going by ISO-8601:1988 standards (see %V)         | Example: `09` for the week of `January 6, 2009` |
-|  `%G`  | The full four-digit version of %g                                                      | Example: `2009` for the `January 3, 2009`       |
+|  `%g`  | Two digit representation of the year going by ISO-8601:1988 standards (see `%V`)       | Example: `09` for the week of `January 6, 2009` |
+|  `%G`  | The full four-digit version of `%g`                                                    | Example: `2009` for the `January 3, 2009`       |
 |  `%y`  | Two digit representation of the year                                                   | Example: `09` for `2009`, `79` for `1979`       |
 |  `%Y`  | Four digit representation for the year                                                 | Example: `2038`                                 |
 
@@ -143,8 +143,8 @@ You can install this plugin into your application using [composer](https://getco
 |  `%S`  | Two digit representation of the second                                        | `00` through `59`                                      |
 |  `%T`  | Same as "`%H:%M:%S`"                                                          | Example: `21:34:17` for `09:34:17 PM`                  |
 |  `%X`  | Preferred time representation based on locale, without the date               | Example: `03:59:16` or `15:59:16`                      |
-|  `%z`  | The time zone offset.                                                         | Example: `-0500` for `US Eastern Time`                 |
-|  `%Z`  | The time zone abbreviation.                                                   | Example: `EST` for `Eastern Time`                      |
+|  `%z`  | The time zone offset                                                          | Example: `-0500` for `US Eastern Time`                 |
+|  `%Z`  | The time zone abbreviation                                                    | Example: `EST` for `Eastern Time`                      |
 
 [TOC](#table-of-contents)
 ### Time and Date Stamps

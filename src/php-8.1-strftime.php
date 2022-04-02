@@ -137,7 +137,9 @@
 
       // Time
       '%H' => 'H',
-      '%k' => 'G',
+      '%k' => function ($timestamp) {
+        return sprintf('% 2u', $timestamp->format('G'));
+      },
       '%I' => 'h',
       '%l' => function ($timestamp) {
         return sprintf('% 2u', $timestamp->format('g'));
