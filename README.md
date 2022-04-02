@@ -106,7 +106,7 @@ You can install this plugin into your application using [composer](https://getco
 |  `%V`  | ISO-8601:1988 week number of the given year, starting withthe first week of the year with at least 4 weekdays, with Monday being the start of the week | `01` through `53` (where 53 accounts for an overlapping week)  |
 |  `%W`  | A numeric representation of the week of the year, starting with the first Monday as the first week                                                     | `46` (for the `46th week of the year` beginning with a Monday) |
 
-NOTE: All week formats are two-digit, with leading zeros.
+**NOTE**: All week formats are two-digit, with leading zeros.
 
 [TOC](#table-of-contents)
 ### Month
