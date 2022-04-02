@@ -17,13 +17,31 @@ Original code: https://gist.github.com/bohwaz/42fc223031e2b2dd2585aab159a20f30
 
 Original autor: [BohwaZ](https://bohwaz.net/)
 
-# Requirements
+# Table of contents
+- [Requirements](#requirements)
+- [Installation](#installation)
+  - [Composer install](#composer-install)
+  - [Manual install](#manual-install)
+- [Usage](#usage)
+  - [Original use](#original-use)
+- [Formats](#formats)
+  - [Day](#day)
+  - [Week](#week)
+  - [Month](#month)
+  - [Year](#year)
+  - [Time](#time)
+  - [Time and Date Stamps](#time-and-date-stamps)
+  - [Miscellaneous](#miscellaneous)
+
+## Requirements
 - PHP >= 5.6
 - ext-intl ([Internationalization extension ICU](https://www.php.net/manual/en/book.intl.php))
 
-# Installation
+[TOC](#table-of-contents)
 
-## Composer install
+## Installation
+
+### Composer install
 You can install this plugin into your application using [composer](https://getcomposer.org):
 
 - Add php81_bc/strftime package to your project:
@@ -38,7 +56,9 @@ You can install this plugin into your application using [composer](https://getco
     use function PHP81_BC\strftime;
   ```
 
-## Manual install
+[TOC](#table-of-contents)
+
+### Manual install
 - Download [php-8.1-strftime.php](https://github.com/alphp/strftime/raw/master/src/php-8.1-strftime.php) and save it to an accessible path of your project.
 - Load the function PHP81_BC\strftime in your project
   ```php
@@ -47,20 +67,27 @@ You can install this plugin into your application using [composer](https://getco
     use function PHP81_BC\strftime;
   ```
 
-# Usage
+[TOC](#table-of-contents)
+
+## Usage
 ```php
   use function PHP81_BC\strftime;
   echo strftime('%A %e %B %Y %X', new \DateTime('2021-09-28 00:00:00'), 'fr_FR');
 ```
 
-## Original use
+[TOC](#table-of-contents)
+
+### Original use
 ```php
   \setlocale(LC_TIME, 'fr_FR.UTF-8');
   echo \strftime('%A %e %B %Y %X', strtotime('2021-09-28 00:00:00'));
 ```
 
-# Formats
-## Day
+[TOC](#table-of-contents)
+
+## Formats
+
+### Day
 | Format | Description                                             | Example returned values                         |
 |:------:|---------------------------------------------------------|-------------------------------------------------|
 |  `%a`  | An abbreviated textual representation of the day        | `Sun` through `Sat`                             |
@@ -70,20 +97,28 @@ You can install this plugin into your application using [composer](https://getco
 |  `%j`  | Day of the year, 3 digits with leading zeros            | `001` to `366`                                  |
 |  `%u`  | ISO-8601 numeric representation of the day of the week  | `1` (for `Monday`) through `7` (for `Sunday`)   |
 |  `%w`  | Numeric representation of the day of the week           | `0` (for `Sunday`) through `6` (for `Saturday`) |
-## Week
+
+[TOC](#table-of-contents)
+### Week
 | Format | Description                                                                                                                                            | Example returned values                                        |
 |:------:|--------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------|
 |  `%U`  | Week number of the given year, starting with the first Sunday as the first week                                                                        | `13` (for the `13th full week of the year`)                    |
 |  `%V`  | ISO-8601:1988 week number of the given year, starting withthe first week of the year with at least 4 weekdays, with Monday being the start of the week | `01` through `53` (where 53 accounts for an overlapping week)  |
-|  `%W`  | A numeric representation of the week of the year, startingwith the first Monday as the first week                                                      | `46` (for the `46th week of the year` beginning with a Monday) |
-## Month
+|  `%W`  | A numeric representation of the week of the year, starting with the first Monday as the first week                                                     | `46` (for the `46th week of the year` beginning with a Monday) |
+
+NOTE: All week formats are two-digit, with leading zeros.
+
+[TOC](#table-of-contents)
+### Month
 | Format | Description                                                    | Example returned values                            |
 |:------:|----------------------------------------------------------------|----------------------------------------------------|
 |  `%b`  | Abbreviated month name, based on the locale                    | `Jan` through `Dec`                                |
 |  `%B`  | Full month name, based on the locale                           | `January` through `December`                       |
 |  `%h`  | Abbreviated month name, based on the locale (an alias of `%b`) | `Jan` through `Dec`                                |
 |  `%m`  | Two digit representation of the month                          | `01` (for `January`) through `12` (for `December`) |
-## Year
+
+[TOC](#table-of-contents)
+### Year
 | Format | Description                                                                            | Example returned values                         |
 |:------:|----------------------------------------------------------------------------------------|-------------------------------------------------|
 |  `%C`  | Two digit representation of the century (year divided by 100, truncated to an integer) | `19` for the `20th Century`                     |
@@ -91,7 +126,9 @@ You can install this plugin into your application using [composer](https://getco
 |  `%G`  | The full four-digit version of %g                                                      | Example: `2009` for the `January 3, 2009`       |
 |  `%y`  | Two digit representation of the year                                                   | Example: `09` for `2009`, `79` for `1979`       |
 |  `%Y`  | Four digit representation for the year                                                 | Example: `2038`                                 |
-## Time
+
+[TOC](#table-of-contents)
+### Time
 | Format | Description                                                                   | Example returned values                                |
 |:------:|-------------------------------------------------------------------------------|--------------------------------------------------------|
 |  `%H`  | Two digit representation of the hour in 24-hour format                        | `00` through `23`                                      |
@@ -108,7 +145,9 @@ You can install this plugin into your application using [composer](https://getco
 |  `%X`  | Preferred time representation based on locale, without the date               | Example: `03:59:16` or `15:59:16`                      |
 |  `%z`  | The time zone offset.                                                         | Example: `-0500` for `US Eastern Time`                 |
 |  `%Z`  | The time zone abbreviation.                                                   | Example: `EST` for `Eastern Time`                      |
-## Time and Date Stamps
+
+[TOC](#table-of-contents)
+### Time and Date Stamps
 | Format | Description                                                     | Example returned values                                                  |
 |:------:|-----------------------------------------------------------------|--------------------------------------------------------------------------|
 |  `%c`  | Preferred date and time stamp based on locale                   | Example: `Tue Feb 5 00:45:10 2009` for `February 5, 2009 at 12:45:10 AM` |
@@ -116,9 +155,13 @@ You can install this plugin into your application using [composer](https://getco
 |  `%F`  | Same as "`%Y-%m-%d`" (commonly used in database datestamps)     | Example: `2009-02-05` for `February 5, 2009`                             |
 |  `%s`  | Unix Epoch Time timestamp (same as the `time()` function)       | Example: `305815200` for `September 10, 1979 08:40:00 AM`                |
 |  `%x`  | Preferred date representation based on locale, without the time | Example: `02/05/09` for `February 5, 2009`                               |
-## Miscellaneous
+
+[TOC](#table-of-contents)
+### Miscellaneous
 | Format | Description                          |
 |:------:|--------------------------------------|
 |  `%n`  | A newline character ("\n")           |
 |  `%t`  | A Tab character ("\t")               |
 |  `%%`  | A literal percentage character ("%") |
+
+[TOC](#table-of-contents)

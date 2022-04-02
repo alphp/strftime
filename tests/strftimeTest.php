@@ -58,13 +58,13 @@
 
     public function test_formats_week () {
       $result = strftime('%U', '20220306 13:02:03');
-      $this->assertEquals('9', $result);
+      $this->assertEquals('10', $result);
 
       $result = strftime('%V', '20220306 13:02:03');
       $this->assertEquals('09', $result);
 
       $result = strftime('%W', '20220306 13:02:03');
-      $this->assertEquals('8', $result);
+      $this->assertEquals('09', $result);
     }
 
     public function test_formats_month () {
