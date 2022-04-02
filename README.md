@@ -132,7 +132,7 @@ You can install this plugin into your application using [composer](https://getco
 | Format | Description                                                                   | Example returned values                                |
 |:------:|-------------------------------------------------------------------------------|--------------------------------------------------------|
 |  `%H`  | Two digit representation of the hour in 24-hour format                        | `00` through `23`                                      |
-|  `%k`  | Hour in 24-hour format, with a space preceding single digits                  | `0` through `23`                                       |
+|  `%k`  | Hour in 24-hour format, with a space preceding single digits                  | ` 0` through `23`                                      |
 |  `%I`  | Two digit representation of the hour in 12-hour format                        | `01` through `12`                                      |
 |  `%l`  | (lower-case 'L') Hour in 12-hour format, with a space preceding single digits | ` 1` through `12`                                      |
 |  `%M`  | Two digit representation of the minute                                        | `00` through `59`                                      |
