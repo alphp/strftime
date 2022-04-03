@@ -93,7 +93,7 @@ You can install this plugin into your application using [composer](https://getco
 |  `%a`  | An abbreviated textual representation of the day       | `Sun` through `Sat`                             |
 |  `%A`  | A full textual representation of the day               | `Sunday` through `Saturday`                     |
 |  `%d`  | Two-digit day of the month (with leading zeros)        | `01` to `31`                                    |
-|  `%e`  | Day of the month, with a space preceding single digits | ` 1` to `31`                                    |
+|  `%e`  | Day of the month, with a space preceding single digits | `' 1'` to `'31'`                                    |
 |  `%j`  | Day of the year, 3 digits with leading zeros           | `001` to `366`                                  |
 |  `%u`  | ISO-8601 numeric representation of the day of the week | `1` (for `Monday`) through `7` (for `Sunday`)   |
 |  `%w`  | Numeric representation of the day of the week          | `0` (for `Sunday`) through `6` (for `Saturday`) |
@@ -132,9 +132,9 @@ You can install this plugin into your application using [composer](https://getco
 | Format | Description                                                                   | Example returned values                                |
 |:------:|-------------------------------------------------------------------------------|--------------------------------------------------------|
 |  `%H`  | Two digit representation of the hour in 24-hour format                        | `00` through `23`                                      |
-|  `%k`  | Hour in 24-hour format, with a space preceding single digits                  | ` 0` through `23`                                      |
+|  `%k`  | Hour in 24-hour format, with a space preceding single digits                  | `' 0'` through `'23'`                                      |
 |  `%I`  | Two digit representation of the hour in 12-hour format                        | `01` through `12`                                      |
-|  `%l`  | (lower-case 'L') Hour in 12-hour format, with a space preceding single digits | ` 1` through `12`                                      |
+|  `%l`  | (lower-case 'L') Hour in 12-hour format, with a space preceding single digits | `' 1'` through `'12'`                                      |
 |  `%M`  | Two digit representation of the minute                                        | `00` through `59`                                      |
 |  `%p`  | UPPER-CASE '`AM`' or '`PM`' based on the given time                           | Example: `AM` for `00:31`, `PM` for `22:23`            |
 |  `%P`  | lower-case '`am`' or '`pm`' based on the given time                           | Example: `am` for `00:31`, `pm` for `22:23`            |
