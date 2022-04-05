@@ -165,4 +165,15 @@
       $result = strftime('%%', '20220306 13:02:03');
       $this->assertEquals('%', $result, '%%: A literal percentage character ("%")');
     }
+
+    public function testLocale () {
+      $result = strftime('%c', '20220306 13:02:03', 'eu');
+      $this->assertEquals('2022(e)ko martxoaren 6(a) 13:02', $result, '%x: Preferred date representation based on locale, without the time');
+
+      $result = strftime('%b', '20220306 13:02:03', 'eu');
+      $this->assertEquals('mar.', $result, '%b: Abbreviated month name, based on the locale');
+
+      $result = strftime('%B', '20220306 13:02:03', 'eu');
+      $this->assertEquals('martxoa', $result, '%B: Full month name, based on the locale');
+    }
   }
