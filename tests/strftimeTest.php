@@ -176,4 +176,30 @@
       $result = strftime('%B', '20220306 13:02:03', 'eu');
       $this->assertEquals('martxoa', $result, '%B: Full month name, based on the locale');
     }
+
+    /**
+     * In October 1582, the Gregorian calendar replaced the Julian in much of Europe, and
+     *   the 4th October was followed by the 15th October.
+     *  ICU (including IntlDateFormattter) interprets and formats dates based on this cutover.
+     *  Posix (including strftime) and timelib (including DateTimeImmutable) instead use
+     *   a "proleptic Gregorian calendar" - they pretend the Gregorian calendar has existed forever.
+     *  This leads to the same instants in time, as expressed in Unix time, having different representations
+     *   in formatted strings.
+     */
+    public function testJulianCutover () {
+      // 1st October 1582 in proleptic Gregorian is the same date as 21st September 1582 Julian
+      $prolepticTimestamp = DateTimeImmutable::createFromFormat('Y-m-d|', '1582-10-01')->getTimestamp();
+      $result = strftime('%x', $prolepticTimestamp, 'eu');
+      $this->assertEquals('82/10/1', $result);
+
+      // In much of Europe, the 10th October 1582 never existed
+      $prolepticTimestamp = DateTimeImmutable::createFromFormat('Y-m-d|', '1582-10-10')->getTimestamp();
+      $result = strftime('%x', $prolepticTimestamp, 'eu');
+      $this->assertEquals('82/10/10', $result);
+
+      // The 15th October was the first day after the cutover, after which both systems agree
+      $prolepticTimestamp = DateTimeImmutable::createFromFormat('Y-m-d|', '1582-10-15')->getTimestamp();
+      $result = strftime('%x', $prolepticTimestamp, 'eu');
+      $this->assertEquals('82/10/15', $result);
+    }
   }
