@@ -13,7 +13,7 @@
     "source": "https://github.com/alphp/strftime"
   },
   "require": {
-    "php": ">=5.6.0",
+    "php": ">=7.1.0",
     "ext-intl" : "*"
   },
   "require-dev": {
