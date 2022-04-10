@@ -6,6 +6,7 @@
   use DateTimeInterface;
   use Exception;
   use IntlDateFormatter;
+  use IntlGregorianCalendar;
   use InvalidArgumentException;
 
   /**
@@ -85,7 +86,18 @@
           $pattern = $intl_formats[$format];
       }
 
-      return (new IntlDateFormatter($locale, $date_type, $time_type, $tz, null, $pattern))->format($timestamp);
+      // In October 1582, the Gregorian calendar replaced the Julian in much of Europe, and
+      //  the 4th October was followed by the 15th October.
+      // ICU (including IntlDateFormattter) interprets and formats dates based on this cutover.
+      // Posix (including strftime) and timelib (including DateTimeImmutable) instead use
+      //  a "proleptic Gregorian calendar" - they pretend the Gregorian calendar has existed forever.
+      // This leads to the same instants in time, as expressed in Unix time, having different representations
+      //  in formatted strings.
+      // To adjust for this, a custom calendar can be supplied with a cutover date arbitrarily far in the past.
+      $calendar = IntlGregorianCalendar::createInstance();
+      $calendar->setGregorianChange(PHP_INT_MIN);
+
+      return (new IntlDateFormatter($locale, $date_type, $time_type, $tz, $calendar, $pattern))->format($timestamp);
     };
 
     // Same order as https://www.php.net/manual/en/function.strftime.php
