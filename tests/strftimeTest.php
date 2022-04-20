@@ -167,8 +167,11 @@
     }
 
     public function testLocale () {
+      $result = strftime('%x %X', '20220306 13:02:03', 'it');
+      $this->assertEquals('06/03/22 13:02:03', $result, '%x %X: Preferred date and time representation based on locale');
+
       $result = strftime('%c', '20220306 13:02:03', 'eu');
-      $this->assertEquals('2022(e)ko martxoaren 6(a) 13:02', $result, '%x: Preferred date representation based on locale, without the time');
+      $this->assertEquals('2022(e)ko martxoaren 6(a) 13:02', $result, '%c: Preferred date and time stamp based on locale');
 
       $result = strftime('%b', '20220306 13:02:03', 'eu');
       $this->assertEquals('mar.', $result, '%b: Abbreviated month name, based on the locale');

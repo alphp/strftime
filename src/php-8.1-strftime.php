@@ -183,8 +183,7 @@
       $pattern = '%'.$char;
       if ($pattern == '%n') {
         return "\n";
-      }
-      elseif ($pattern == '%t') {
+      } elseif ($pattern == '%t') {
         return "\t";
       }
 
@@ -196,8 +195,7 @@
 
       if (is_string($replace)) {
         $result = $timestamp->format($replace);
-      }
-      else {
+      } else {
         $result = $replace($timestamp, $pattern);
       }
 
