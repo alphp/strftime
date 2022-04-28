@@ -1,12 +1,18 @@
 <?php
   declare(strict_types=1);
 
+  namespace PHP81_BC\Tests;
+
+  use DateTime;
+  use DateTimeImmutable;
+  use InvalidArgumentException;
   use PHPUnit\Framework\TestCase;
   use function PHP81_BC\strftime;
 
   class strftimeTest extends TestCase {
+    use LocaleFormatterTestTrait;
 
-    public function setUp () : void {
+    public static function setUpBeforeClass () : void {
       date_default_timezone_set('Europe/Madrid');
     }
 
@@ -166,23 +172,6 @@
       $this->assertEquals('%', $result, '%%: A literal percentage character ("%")');
     }
 
-    public function testLocale () {
-      $result = strftime('%x %X', '20220306 13:02:03', 'it_IT');
-      $this->assertEquals('06/03/22 13:02:03', $result, 'Locale test for it_IT');
-
-      $result = strftime('%x %X', '20220306 13:02:03', 'it_CH');
-      $this->assertEquals('06.03.22 13:02:03', $result, 'Locale test for it_CH');
-
-      $result = strftime('%c', '20220306 13:02:03', 'eu');
-      $this->assertEquals('2022(e)ko martxoaren 6(a) 13:02', $result, '%c: Preferred date and time stamp based on locale');
-
-      $result = strftime('%b', '20220306 13:02:03', 'eu');
-      $this->assertEquals('mar.', $result, '%b: Abbreviated month name, based on the locale');
-
-      $result = strftime('%B', '20220306 13:02:03', 'eu');
-      $this->assertEquals('martxoa', $result, '%B: Full month name, based on the locale');
-    }
-
     /**
      * In October 1582, the Gregorian calendar replaced the Julian in much of Europe, and
      *   the 4th October was followed by the 15th October.
@@ -195,17 +184,17 @@
     public function testJulianCutover () {
       // 1st October 1582 in proleptic Gregorian is the same date as 21st September 1582 Julian
       $prolepticTimestamp = DateTimeImmutable::createFromFormat('Y-m-d|', '1582-10-01')->getTimestamp();
-      $result = strftime('%x', $prolepticTimestamp, 'eu');
-      $this->assertEquals('82/10/1', $result, '1st October 1582 in proleptic Gregorian is the same date as 21st September 1582 Julian');
+      $result = strftime('%F: %x', $prolepticTimestamp, 'en-EN');
+      $this->assertEquals('1582-10-01: 10/1/82', $result, '1st October 1582 in proleptic Gregorian is the same date as 21st September 1582 Julian');
 
       // In much of Europe, the 10th October 1582 never existed
       $prolepticTimestamp = DateTimeImmutable::createFromFormat('Y-m-d|', '1582-10-10')->getTimestamp();
-      $result = strftime('%x', $prolepticTimestamp, 'eu');
-      $this->assertEquals('82/10/10', $result, 'In much of Europe, the 10th October 1582 never existed');
+      $result = strftime('%F: %x', $prolepticTimestamp, 'en-EN');
+      $this->assertEquals('1582-10-10: 10/10/82', $result, 'In much of Europe, the 10th October 1582 never existed');
 
       // The 15th October was the first day after the cutover, after which both systems agree
       $prolepticTimestamp = DateTimeImmutable::createFromFormat('Y-m-d|', '1582-10-15')->getTimestamp();
-      $result = strftime('%x', $prolepticTimestamp, 'eu');
-      $this->assertEquals('82/10/15', $result, 'The 15th October was the first day after the cutover, after which both systems agree');
+      $result = strftime('%F: %x', $prolepticTimestamp, 'en-EN');
+      $this->assertEquals('1582-10-15: 10/15/82', $result, 'The 15th October was the first day after the cutover, after which both systems agree');
     }
   }
