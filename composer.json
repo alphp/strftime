@@ -34,5 +34,10 @@
     "psr-4": {
       "PHP81_BC\\strftime\\": "src"
     }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "PHP81_BC\\Tests\\": "tests/"
+    }
   }
 }
