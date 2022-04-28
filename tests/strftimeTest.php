@@ -5,8 +5,8 @@
   use function PHP81_BC\strftime;
 
   class strftimeTest extends TestCase {
+
     public function setUp () : void {
-      setlocale(LC_TIME, 'en');
       date_default_timezone_set('Europe/Madrid');
     }
 
@@ -30,10 +30,10 @@
     }
 
     public function testDayFormats () {
-      $result = strftime('%a', '20220306 13:02:03');
+      $result = strftime('%a', '20220306 13:02:03', 'en-EN');
       $this->assertEquals('Sun', $result, '%a: An abbreviated textual representation of the day');
 
-      $result = strftime('%A', '20220306 13:02:03');
+      $result = strftime('%A', '20220306 13:02:03', 'en-EN');
       $this->assertEquals('Sunday', $result, '%A: A full textual representation of the day');
 
       $result = strftime('%d', '20220306 13:02:03');
@@ -64,13 +64,13 @@
     }
 
     public function testMonthFormats () {
-      $result = strftime('%b', '20220306 13:02:03');
+      $result = strftime('%b', '20220306 13:02:03', 'en-EN');
       $this->assertEquals('Mar', $result, '%b: Abbreviated month name, based on the locale');
 
-      $result = strftime('%B', '20220306 13:02:03');
+      $result = strftime('%B', '20220306 13:02:03', 'en-EN');
       $this->assertEquals('March', $result, '%B: Full month name, based on the locale');
 
-      $result = strftime('%h', '20220306 13:02:03');
+      $result = strftime('%h', '20220306 13:02:03', 'en-EN');
       $this->assertEquals('Mar', $result, '%h: Abbreviated month name, based on the locale (an alias of %b)');
 
       $result = strftime('%m', '20220306 13:02:03');
@@ -128,7 +128,7 @@
       $result = strftime('%T', '20220306 13:02:03');
       $this->assertEquals('13:02:03', $result, '%T: Same as "%H:%M:%S"');
 
-      $result = strftime('%X', '20220306 13:02:03');
+      $result = strftime('%X', '20220306 13:02:03', 'en-EN');
       $this->assertEquals('1:02:03 PM', $result, '%X: Preferred time representation based on locale, without the date');
 
       $result = strftime('%z', '20220306 13:02:03');
@@ -139,7 +139,7 @@
     }
 
     public function testStampsFormats () {
-      $result = strftime('%c', '20220306 13:02:03');
+      $result = strftime('%c', '20220306 13:02:03', 'en-EN');
       $this->assertEquals('March 6, 2022 at 1:02 PM', $result, '%c: Preferred date and time stamp based on locale');
 
       $result = strftime('%D', '20220306 13:02:03');
@@ -151,7 +151,7 @@
       $result = strftime('%s', '20220306 13:02:03');
       $this->assertEquals('1646568123', $result, '%s: Unix Epoch Time timestamp (same as the time() function)');
 
-      $result = strftime('%x', '20220306 13:02:03');
+      $result = strftime('%x', '20220306 13:02:03', 'en-EN');
       $this->assertEquals('3/6/22', $result, '%x: Preferred date representation based on locale, without the time');
     }
 
