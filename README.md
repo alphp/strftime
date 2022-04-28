@@ -35,7 +35,7 @@ Original autor: [BohwaZ](https://bohwaz.net/)
   - [Miscellaneous](#miscellaneous)
 
 ## Requirements
-- PHP >= 5.6
+- PHP >= 7.1.0
 - ext-intl ([Internationalization extension ICU](https://www.php.net/manual/en/book.intl.php))
 
 [TOC](#table-of-contents)
