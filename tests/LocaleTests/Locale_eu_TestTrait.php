@@ -10,6 +10,12 @@
     public function testLocale_eu () {
       $locale = 'eu';
 
+      if (__CLASS__ == 'PHP81_BC\Tests\DateLocaleFormatterTest') {
+        $this->markTestSkipped(
+          'The IntlDateFormatter class is not available.'
+        );
+      }
+
       $result = strftime('%a', '20220306 13:02:03', $locale);
       $this->assertEquals('ig.', $result, '%a: An abbreviated textual representation of the day');
 

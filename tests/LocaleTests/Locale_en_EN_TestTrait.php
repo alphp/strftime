@@ -10,6 +10,11 @@
     public function testLocale_en_EN () {
       $locale = 'en-EN';
 
+      if (__CLASS__ == 'PHP81_BC\Tests\DateLocaleFormatterTest') {
+        $this->expectNotice();
+        $this->expectNoticeMessage('Formatting without \\IntlDateFormatter only return english formats');
+      }
+
       $result = strftime('%a', '20220306 13:02:03', $locale);
       $this->assertEquals('Sun', $result, '%a: An abbreviated textual representation of the day');
 

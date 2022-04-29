@@ -10,8 +10,6 @@
   use function PHP81_BC\strftime;
 
   class strftimeTest extends TestCase {
-    use LocaleFormatterTestTrait;
-
     public static function setUpBeforeClass () : void {
       date_default_timezone_set('Europe/Madrid');
     }
