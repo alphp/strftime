@@ -7,6 +7,9 @@
   use PHPUnit\Framework\TestCase;
   use function PHP81_BC\strftime;
 
+  /**
+   * @requires extension intl
+   */
   class IntlLocaleFormatterTest extends TestCase {
     use LocaleFormatterTestTrait;
 
