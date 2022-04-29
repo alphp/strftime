@@ -30,6 +30,8 @@ class DateLocaleFormatter extends AbstractLocaleFormatter
       throw new \RuntimeException("'$format' is not a supported locale placeholder");
     }
 
+    trigger_error('Formatting without \\IntlDateFormatter only return english formats');
+
     return $timestamp->format($this->formats[$format]);
   }
 
