@@ -18,9 +18,9 @@ class DateLocaleFormatter extends AbstractLocaleFormatter
     '%b' => 'M',  // Abbreviated month name, 	Jan through Dec
     '%B' => 'F',  // Full month name, 	January through December
     '%h' => 'M',  // Abbreviated month name, (an alias of %b)	Jan through Dec
-    '%c' => 'D M j H:i:s Y', // Preferred date and time stamp
-    '%x' => 'm/d/Y', // Preferred date representation, without the time
-    '%X' => 'H:i:s', // Time only
+    '%c' => 'F j, Y \a\t g:i A', // Preferred date and time stamp
+    '%x' => 'n/j/y', // Preferred date representation, without the time
+    '%X' => 'g:i:s A', // Time only
   ];
 
   /** @inheritdoc */
