@@ -206,7 +206,7 @@
         case '#':
         case '-':
           // remove leading zeros but keep last char if also zero
-          return preg_replace('/^0+(?=.)/', '', $result);
+          return preg_replace('/^[0\s]+(?=.)/', '', $result);
       }
 
       return $result;
