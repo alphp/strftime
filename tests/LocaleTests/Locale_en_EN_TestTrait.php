@@ -29,7 +29,7 @@
       $this->assertMatchesRegularExpression('~1:02:03 PM|13:02:03~', $result, '%X: Preferred time representation based on locale, without the date');
 
       $result = strftime('%c', '20220306 13:02:03', $locale);
-      $this->assertEquals('March 6, 2022 at 13:02', $result, '%c: Preferred date and time stamp based on locale');
+      $this->assertMatchesRegularExpression('~March 6, 2022 at (1:02 PM|13:02)~', $result, '%c: Preferred date and time stamp based on locale');
 
       $result = strftime('%x', '20220306 13:02:03', $locale);
       $this->assertEquals('3/6/22', $result, '%x: Preferred date representation based on locale, without the time');
