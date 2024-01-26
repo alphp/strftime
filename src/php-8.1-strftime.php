@@ -38,14 +38,8 @@
 
     $timestamp->setTimezone(new DateTimeZone(date_default_timezone_get()));
 
-    if (empty($locale)) {
-      // get current locale
-      $locale = setlocale(LC_TIME, '0');
-    }
-    // remove trailing part not supported by ext-intl locale
-    $locale = preg_replace('/[^\w-].*$/', '', $locale);
-
     if (class_exists('\\IntlDateFormatter') && !isset($_SERVER['STRFTIME_NO_INTL'])) {
+      $locale = \Locale::canonicalize($locale ?? setlocale(LC_TIME, '0'));
       $locale_formatter = new \PHP81_BC\strftime\IntlLocaleFormatter($locale);
     } else {
       $locale_formatter = new \PHP81_BC\strftime\DateLocaleFormatter($locale);
