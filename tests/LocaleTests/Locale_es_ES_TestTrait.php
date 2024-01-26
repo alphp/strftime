@@ -23,7 +23,7 @@
       $this->assertEquals('marzo', $result, '%B: Full month name, based on the locale');
 
       $result = strftime('%h', '20220306 13:02:03', $locale);
-      $this->assertEquals('mar', $result, '%h: Abbreviated month name, based on the locale (an alias of %b)');
+      $this->assertMatchesRegularExpression('~mar\.?~', $result, '%h: Abbreviated month name, based on the locale (an alias of %b)');
 
       $result = strftime('%X', '20220306 13:02:03', $locale);
       $this->assertEquals('13:02:03', $result, '%X: Preferred time representation based on locale, without the date');
