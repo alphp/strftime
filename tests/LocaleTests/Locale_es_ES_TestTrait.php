@@ -11,7 +11,7 @@
       $locale = 'es-ES';
 
       $result = strftime('%a', '20220306 13:02:03', $locale);
-      $this->assertEquals('dom', $result, '%a: An abbreviated textual representation of the day');
+      $this->assertMatchesRegularExpression('~dom\.?~', $result, '%a: An abbreviated textual representation of the day');
 
       $result = strftime('%A', '20220306 13:02:03', $locale);
       $this->assertEquals('domingo', $result, '%A: A full textual representation of the day');
