@@ -29,7 +29,7 @@
       $this->assertEquals('13:02:03', $result, '%X: Preferred time representation based on locale, without the date');
 
       $result = strftime('%c', '20220306 13:02:03', $locale);
-      $this->assertEquals('6 marzo 2022 alle ore 13:02', $result, '%c: Preferred date and time stamp based on locale');
+      $this->assertEquals('6 marzo 2022 13:02', $result, '%c: Preferred date and time stamp based on locale');
 
       $result = strftime('%x', '20220306 13:02:03', $locale);
       $this->assertEquals('06.03.22', $result, '%x: Preferred date representation based on locale, without the time');
