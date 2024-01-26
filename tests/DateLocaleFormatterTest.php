@@ -13,9 +13,17 @@
     public static function setUpBeforeClass () : void {
       date_default_timezone_set('Europe/Madrid');
       $_SERVER['STRFTIME_NO_INTL'] = true;
+
+      set_error_handler(
+        static function ( $errno, $errstr ) {
+          throw new \ErrorException( $errstr, $errno );
+        },
+        E_ALL
+      );
     }
 
     public static function tearDownAfterClass () : void {
       unset($_SERVER['STRFTIME_NO_INTL']);
+      restore_error_handler();
     }
   }

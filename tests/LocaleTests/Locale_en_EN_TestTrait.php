@@ -11,8 +11,8 @@
       $locale = 'en-EN';
 
       if (__CLASS__ == 'PHP81_BC\Tests\DateLocaleFormatterTest') {
-        $this->expectNotice();
-        $this->expectNoticeMessage('Formatting without \\IntlDateFormatter only return english formats');
+        $this->expectException(\ErrorException::class);
+        $this->expectExceptionMessage('Formatting without \\IntlDateFormatter only return english formats');
       }
 
       $result = strftime('%a', '20220306 13:02:03', $locale);
