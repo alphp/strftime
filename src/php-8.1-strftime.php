@@ -6,7 +6,6 @@
   use DateTimeZone;
   use Exception;
   use InvalidArgumentException;
-  use Locale;
 
   /**
    * Locale-formatted strftime using IntlDateFormatter (PHP 8.1 compatible)
@@ -39,9 +38,8 @@
 
     $timestamp->setTimezone(new DateTimeZone(date_default_timezone_get()));
 
-    $locale = Locale::canonicalize($locale ?? setlocale(LC_TIME, '0'));
-
     if (class_exists('\\IntlDateFormatter') && !isset($_SERVER['STRFTIME_NO_INTL'])) {
+      $locale = \Locale::canonicalize($locale ?? setlocale(LC_TIME, '0'));
       $locale_formatter = new \PHP81_BC\strftime\IntlLocaleFormatter($locale);
     } else {
       $locale_formatter = new \PHP81_BC\strftime\DateLocaleFormatter($locale);
