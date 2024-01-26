@@ -8,6 +8,7 @@
   use IntlDateFormatter;
   use IntlGregorianCalendar;
   use InvalidArgumentException;
+  use Locale;
 
   /**
    * Locale-formatted strftime using IntlDateFormatter (PHP 8.1 compatible)
@@ -40,17 +41,12 @@
 
     $timestamp->setTimezone(new DateTimeZone(date_default_timezone_get()));
 
-    if (empty($locale)) {
-      // get current locale
-      $locale = setlocale(LC_TIME, '0');
-    }
-    // remove trailing part not supported by ext-intl locale
-    $locale = preg_replace('/[^\w-].*$/', '', $locale);
+    $locale = Locale::canonicalize($locale ?? setlocale(LC_TIME, '0'));
 
     $intl_formats = [
-      '%a' => 'EEE',	// An abbreviated textual representation of the day	Sun through Sat
+      '%a' => 'ccc',	// An abbreviated textual representation of the day	Sun through Sat
       '%A' => 'EEEE',	// A full textual representation of the day	Sunday through Saturday
-      '%b' => 'MMM',	// Abbreviated month name, based on the locale	Jan through Dec
+      '%b' => 'LLL',	// Abbreviated month name, based on the locale	Jan through Dec
       '%B' => 'MMMM',	// Full month name, based on the locale	January through December
       '%h' => 'MMM',	// Abbreviated month name, based on the locale (an alias of %b)	Jan through Dec
     ];
@@ -95,7 +91,11 @@
       //  in formatted strings.
       // To adjust for this, a custom calendar can be supplied with a cutover date arbitrarily far in the past.
       $calendar = IntlGregorianCalendar::createInstance();
-      $calendar->setGregorianChange(PHP_INT_MIN);
+      // NOTE: IntlGregorianCalendar::createInstance DOES NOT return an IntlGregorianCalendar instance when
+      // using a non-Gregorian locale (e.g. fa_IR)! In that case, setGregorianChange will not exist.
+      if ($calendar instanceof IntlGregorianCalendar) {
+        $calendar->setGregorianChange(PHP_INT_MIN);
+      }
 
       return (new IntlDateFormatter($locale, $date_type, $time_type, $tz, $calendar, $pattern))->format($timestamp);
     };
