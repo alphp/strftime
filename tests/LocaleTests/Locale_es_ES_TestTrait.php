@@ -11,19 +11,19 @@
       $locale = 'es-ES';
 
       $result = strftime('%a', '20220306 13:02:03', $locale);
-      $this->assertEquals('dom.', $result, '%a: An abbreviated textual representation of the day');
+      $this->assertEquals('dom', $result, '%a: An abbreviated textual representation of the day');
 
       $result = strftime('%A', '20220306 13:02:03', $locale);
       $this->assertEquals('domingo', $result, '%A: A full textual representation of the day');
 
       $result = strftime('%b', '20220306 13:02:03', $locale);
-      $this->assertEquals('mar.', $result, '%b: Abbreviated month name, based on the locale');
+      $this->assertEquals('mar', $result, '%b: Abbreviated month name, based on the locale');
 
       $result = strftime('%B', '20220306 13:02:03', $locale);
       $this->assertEquals('marzo', $result, '%B: Full month name, based on the locale');
 
       $result = strftime('%h', '20220306 13:02:03', $locale);
-      $this->assertEquals('mar.', $result, '%h: Abbreviated month name, based on the locale (an alias of %b)');
+      $this->assertEquals('mar', $result, '%h: Abbreviated month name, based on the locale (an alias of %b)');
 
       $result = strftime('%X', '20220306 13:02:03', $locale);
       $this->assertEquals('13:02:03', $result, '%X: Preferred time representation based on locale, without the date');
