@@ -135,7 +135,10 @@
       $this->assertEquals('13:02:03', $result, '%T: Same as "%H:%M:%S"');
 
       $result = strftime('%X', '20220306 13:02:03', 'en-EN');
-      $this->assertMatchesRegularExpression('~1:02:03 PM|13:02:03~', $result, '%X: Preferred time representation based on locale, without the date');
+      $this->assertThat($result, $this->logicalOr(
+        $this->equalTo('1:02:03 PM'),
+        $this->equalTo('13:02:03') // PHP-8
+      ), '%X: Preferred time representation based on locale, without the date');
 
       $result = strftime('%z', '20220306 13:02:03');
       $this->assertEquals('+0100', $result, '%z: The time zone offset');
@@ -146,7 +149,10 @@
 
     public function testStampsFormats () {
       $result = strftime('%c', '20220306 13:02:03', 'en-EN');
-      $this->assertMatchesRegularExpression('~March 6, 2022 at (1:02 PM|13:02)~', $result, '%c: Preferred date and time stamp based on locale');
+      $this->assertThat($result, $this->logicalOr(
+        $this->equalTo('March 6, 2022 at 1:02 PM'),
+        $this->equalTo('March 6, 2022 at 13:02') // PHP-8
+      ), '%c: Preferred date and time stamp based on locale');
 
       $result = strftime('%D', '20220306 13:02:03');
       $this->assertEquals('03/06/2022', $result, '%D: Same as "%m/%d/%y"');
