@@ -25,6 +25,7 @@
    *
    * @param  string $format Date format
    * @param  integer|string|DateTime $timestamp Timestamp
+   * @param  string|null $locale locale
    * @return string
    * @author BohwaZ <https://bohwaz.net/>
    */
