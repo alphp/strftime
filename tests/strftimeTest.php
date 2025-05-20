@@ -46,6 +46,12 @@
       $result = strftime('%e', '20220306 13:02:03');
       $this->assertEquals(' 6', $result, '%e: Day of the month, with a space preceding single digits');
 
+      $result = strftime('%#e', '20220306 13:02:03');
+      $this->assertEquals('6', $result, '%#e: Day of the month, without leading space');
+
+      $result = strftime('%-e', '20220306 13:02:03');
+      $this->assertEquals('6', $result, '%-e: Day of the month, without leading space');
+
       $result = strftime('%j', '20220306 13:02:03');
       $this->assertEquals('065', $result, '%j: Day of the year, 3 digits with leading zeros');
 
