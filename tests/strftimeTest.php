@@ -182,6 +182,12 @@
 
       $result = strftime('%%', '20220306 13:02:03');
       $this->assertEquals('%', $result, '%%: A literal percentage character ("%")');
+
+      $result = strftime('%%Y', '20220306 13:02:03');
+      $this->assertEquals('%Y', $result, '%%Y: A literal percentage character followed by "Y"');
+
+      $result = strftime('%%%Y', '20220306 13:02:03');
+      $this->assertEquals('%2022', $result, '%%%Y: A literal percentage character followed by the year');
     }
 
     /**
