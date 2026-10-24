@@ -180,7 +180,7 @@
     ];
 
     // %% is matched as its own token, so that "%%%Y" becomes "%" followed by the year
-    $out = preg_replace_callback('/%(?:%|([_#-]?)([a-zA-Z]))/', function ($match) use ($translation_table, $timestamp) {
+    $out = preg_replace_callback('/%%|%([_#-]?)([a-zA-Z])/', function ($match) use ($translation_table, $timestamp) {
       if ($match[0] == '%%') {
         return '%';
       }
