@@ -173,7 +173,7 @@
 
       // Time and Date Stamps
       '%c' => $intl_formatter,
-      '%D' => 'm/d/Y',
+      '%D' => 'm/d/y', // %m/%d/%y
       '%F' => 'Y-m-d',
       '%s' => 'U',
       '%x' => $intl_formatter,
