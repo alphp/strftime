@@ -121,14 +121,12 @@
       // Week
       '%U' => function ($timestamp) {
         // Number of weeks between date and first Sunday of year
-        $day = new DateTime(sprintf('%d-01 Sunday', $timestamp->format('Y')));
-        return sprintf('%02u', 1 + ($timestamp->format('z') - $day->format('z')) / 7);
+        return sprintf('%02u', intdiv((int) $timestamp->format('z') + 7 - (int) $timestamp->format('w'), 7));
       },
       '%V' => 'W',
       '%W' => function ($timestamp) {
         // Number of weeks between date and first Monday of year
-        $day = new DateTime(sprintf('%d-01 Monday', $timestamp->format('Y')));
-        return sprintf('%02u', 1 + ($timestamp->format('z') - $day->format('z')) / 7);
+        return sprintf('%02u', intdiv((int) $timestamp->format('z') + 7 - ((int) $timestamp->format('w') + 6) % 7, 7));
       },
 
       // Month
