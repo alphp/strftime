@@ -73,6 +73,15 @@
 
       $result = strftime('%W', '20220306 13:02:03');
       $this->assertEquals('09', $result, '%W: A numeric representation of the week of the year, starting with the first Monday as the first week');
+
+      $result = strftime('%U', new DateTime('0999-12-31 00:00:00'));
+      $this->assertEquals('52', $result, '%U: Week number of a year before 1000');
+
+      $result = strftime('%W', new DateTime('0999-12-31 00:00:00'));
+      $this->assertEquals('52', $result, '%W: Week number of a year before 1000');
+
+      $result = strftime('%W', new DateTime('0001-01-01 00:00:00'));
+      $this->assertEquals('01', $result, '%W: Week number of a year that starts on a Monday');
     }
 
     public function testMonthFormats () {
