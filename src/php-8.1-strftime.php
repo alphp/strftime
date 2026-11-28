@@ -50,7 +50,7 @@
       '%A' => 'EEEE',	// A full textual representation of the day	Sunday through Saturday
       '%b' => 'LLL',	// Abbreviated month name, based on the locale	Jan through Dec
       '%B' => 'MMMM',	// Full month name, based on the locale	January through December
-      '%h' => 'MMM',	// Abbreviated month name, based on the locale (an alias of %b)	Jan through Dec
+      '%h' => 'LLL',	// Abbreviated month name, based on the locale (an alias of %b)	Jan through Dec
     ];
 
     $intl_formatter = function (DateTimeInterface $timestamp, string $format) use ($intl_formats, $locale) {

@@ -85,6 +85,9 @@
       $result = strftime('%h', '20220306 13:02:03', 'en-EN');
       $this->assertEquals('Mar', $result, '%h: Abbreviated month name, based on the locale (an alias of %b)');
 
+      $result = strftime('%h', '20220706 13:02:03', 'de-DE');
+      $this->assertEquals(strftime('%b', '20220706 13:02:03', 'de-DE'), $result, '%h: Abbreviated month name, based on the locale (an alias of %b)');
+
       $result = strftime('%m', '20220306 13:02:03');
       $this->assertEquals('03', $result, '%m: Two digit representation of the month');
     }
